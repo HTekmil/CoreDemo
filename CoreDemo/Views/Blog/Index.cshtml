@@ -5,6 +5,13 @@
     Layout = "~/Views/Shared/UserLayout.cshtml";
 }
 
+<!--
+    Author: W3layouts
+    Author URL: http://w3layouts.com
+    License: Creative Commons Attribution 3.0 Unported
+    License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+
 <section class="main-content-w3layouts-agileits">
     <div class="container">
         <h3 class="tittle">Bloglar</h3>
@@ -27,7 +34,7 @@
                                     </li>
                                     <li class="mx-2">
                                         <a href="#">
-                                            <i class="far fa-comment"></i> 0
+                                            <i class="far fa-comment"></i> @item.BlogContet.Count()
                                         </a>
                                     </li>
                                     <li>
@@ -40,7 +47,7 @@
                                 <h5 class="card-title">
                                     <a href="/Blog/BlogReadAll/@item.BlogID">@item.BlogTitle</a>
                                 </h5>
-                                <p class="card-text mb-3">@item.BlogContet.Substring(0,item.BlogContet.Substring(0,130).LastIndexOf(" "))...</p>
+                                <p class="card-text mb-3">@item.BlogContet.Substring(0, item.BlogContet.Substring(0, 130).LastIndexOf(" "))...</p>
                                 <a href="/Blog/BlogReadAll/@item.BlogID/" class="btn btn-primary read-m">Devamını Oku</a>
                             </div>
                         </div>

@@ -1,14 +1,33 @@
-﻿
-<div class="tech-btm">
-    <h4>E-Posta Bültenine Abone Olun</h4>
+﻿@*<div class="tech-btm">
     <p>Teknoloji, yazılım ve diğer bloglar...</p>
     <div class="tech-btm">
-        <form method="post">
+        <form action="/NewsLetter/SubscribeMail/" method="post">
             <input type="email" placeholder="Email" required="" name="Mail">
             <input type="submit" value="Abone Ol">
         </form>
     </div>
+</div>*@
+
+<div class="tech-btm">
+    <h4>E-Posta Bültenine Abone Olun</h4>
+    <p>Teknoloji, yazılım ve diğer bloglar...</p>
+    <div class="tech-btm">
+        <form aaction="/NewsLetter/SubscribeMail/" method="post" id="new-form">
+            <input type="email" placeholder="Email" required="" name="Mail">
+            <input type="submit" value="Abone Ol" id="abone">
+        </form>
+    </div>
 </div>
+<input />
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+    $("#abone").click(function () {
+        $.post("/NewsLetter/SubscribeMail/", $("new-form").serialize(), function (data) {
+            alert(data);
+        });
+    });
+</script>
 
 
 

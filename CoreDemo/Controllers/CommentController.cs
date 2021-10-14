@@ -28,7 +28,7 @@ namespace CoreDemo.Controllers
             p.CommentStatus = true;
             p.BlogID = 2;
             cm.CommentAdd(p);
-            return PartialView("Index", "BlogReadAll");
+            return PartialView("Index", "Blog");
         }
         public PartialViewResult CommentListByBlog(int id)
         {

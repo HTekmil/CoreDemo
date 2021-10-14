@@ -48,14 +48,14 @@
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label for="exampleInputPassword1 mb-2">Şifreniz Tekrar</label>
-                            @Html.TextBoxFor(x => x.WriterPassword, new { @class = "form-control" })
-                            @Html.ValidationMessageFor(x => x.WriterPassword, "", new { @class = "text-danger" })
+                            <label for="exampleInputPassword1 mb-2">Şifreniz Tekrar Giriniz</label>
+                            @Html.TextBoxFor(x => x.WriterPasswordAgain, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(x => x.WriterPasswordAgain, "", new { @class = "text-danger" })
                             @*<input type="password" class="form-control" name="WriterPassword" id="password1" placeholder="" required="">*@
                         </div>
                         <div class="form-group col-md-6">
                             <label for="exampleInputPassword2 mb-2">Şehir</label>
-                            @Html.DropDownListFor(x => x.WriterCity, (List<SelectListItem>)ViewBag.Cities, new { @class = "form-control" })
+                            @Html.DropDownList("WriterCity", (ViewBag.Cities), "Seçiniz", new { @class = "form-control dropdown" })
                             @*<input type="text" class="form-control" name="WriterImage" id="password2" placeholder="" required="">*@
                         </div>
                     </div>
@@ -70,7 +70,7 @@
     <br />
     <script>
         $('#btn1').click(function () {
-            swal("Site Kabul Şartları","Sitemizde verdiğiniz mail adresine bilgi ve haberler için mail gönderilecektir. Eğer e-ğposta bülteniniden çıkmak isterseniz ayarlardan düzenleyebilirsiniz.");
+            swal("Site Kabul Şartları", "Sitemizde verdiğiniz mail adresine bilgi ve haberler için mail gönderilecektir. Eğer e-ğposta bülteniniden çıkmak isterseniz ayarlardan düzenleyebilirsiniz.");
         });</script>
 </section>
 

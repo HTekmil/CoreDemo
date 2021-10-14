@@ -3,6 +3,7 @@ using BusinessLayer.ValidationRules;
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
 using FluentValidation.Results;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
@@ -12,6 +13,7 @@ using System.Threading.Tasks;
 
 namespace CoreDemo.Controllers
 {
+    [AllowAnonymous]
     public class RegisterController : Controller
     {
         WriterManager wm = new WriterManager(new EfWriterRepository());
@@ -22,37 +24,41 @@ namespace CoreDemo.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult Index(Writer p)
+        public IActionResult Index(Writer p, string WriterPasswordAgain, string WriterCity)
         {
             WriterValidator wv = new WriterValidator();
             ValidationResult result = wv.Validate(p);
-            if (result.IsValid)
+            if (result.IsValid && p.WriterPassword== WriterPasswordAgain)
             {
                 p.WriterStatus = true;
                 p.WriterAbout = "Deneme Test";
                 wm.WriterAdd(p);
                 return RedirectToAction("Index", "Blog");
             }
-            else
+            else if (!result.IsValid)
             {
                 foreach (var item in result.Errors)
                 {
                     ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
                 }
             }
+            else
+            {
+                ModelState.AddModelError("WriterPassword", "Şifre Eşleşmedi!");
+            }
             return View();
 
 
-            
+
         }
         public List<SelectListItem> CityList()
         {
             List<SelectListItem> ListCity = (from x in City()
-                                              select new SelectListItem
-                                              {
-                                                  Text = x,
-                                                  Value = x
-                                              }).ToList();
+                                             select new SelectListItem
+                                             {
+                                                 Text = x,
+                                                 Value = x
+                                             }).ToList();
             return ListCity;
         }
         public List<string> City()
