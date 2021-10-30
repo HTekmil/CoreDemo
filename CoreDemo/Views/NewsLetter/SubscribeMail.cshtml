@@ -1,5 +1,5 @@
 ﻿<div class="tech-btm">
-    <h4>E-Posta Bültenine Abone Olun</h4>
+    @*<h4>E-Posta Bültenine Abone Olun</h4>*@
     <p>Teknoloji, yazılım ve diğer bloglar...</p>
     <div class="tech-btm">
         <form action="/NewsLetter/SubscribeMail/" method="post" id="newform">
@@ -16,9 +16,9 @@
 
 <script>
 
-    $("#newform").submit(function (e) {
-        e.preventDefault();
-        e.stopImmediatePropagation();
+    $("#newform").submit(function (event) {
+        event.preventDefault();
+        event.stopImmediatePropagation();
         var form = $(this);
         var url = form.attr('action');
         $.ajax({
