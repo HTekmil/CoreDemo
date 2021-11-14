@@ -28,7 +28,8 @@ namespace DataAccessLayer.Repositories
         {
             using var c = new Context();
             return c.Set<T>().ToList();
-            c.SaveChanges();
+            //c.SaveChanges(); 
+            //Burada hata fırlatıyordu yorum satırı yaptım
         }
 
         public void Insert(T t)
