@@ -6,10 +6,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace CoreDemo.ViewComponents.Writer
+namespace CoreDemo.ViewComponents.Notification
 {
-    public class WriterNotification : ViewComponent
+    public class NotificationList : ViewComponent
     {
+
         NotificationManager nm = new NotificationManager(new EfNotificationRepository());
 
         public IViewComponentResult Invoke()

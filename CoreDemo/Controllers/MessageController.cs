@@ -6,16 +6,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace CoreDemo.ViewComponents.Writer
+namespace CoreDemo.Controllers
 {
-    public class WriterMessageNotification : ViewComponent
+    public class MessageController : Controller
     {
         Message2Manager mm = new Message2Manager(new EfMessage2Repository());
 
-        public IViewComponentResult Invoke()
+        public IActionResult InBox()
         {
             int id = 1;
             var values = mm.GetInboxListByWriter(id);
+            return View(values);
+        }
+
+        [HttpGet]
+        public IActionResult MessageDetails(int id)
+        {
+            var values = mm.TGetById(id);
             return View(values);
         }
     }
