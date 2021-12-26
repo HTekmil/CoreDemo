@@ -11,21 +11,21 @@ namespace BusinessLayer.Concrete
 {
     public class Message2Manager : IMessage2Service
     {
-        IMessage2Dal _messagel2Dal;
+        IMessage2Dal _message2Dal;
 
-        public Message2Manager(IMessage2Dal messagel2Dal)
+        public Message2Manager(IMessage2Dal message2Dal)
         {
-            _messagel2Dal = messagel2Dal;
+            _message2Dal = message2Dal;
         }
 
         public List<Message2> GetInboxListByWriter(int id)
         {
-            return _messagel2Dal.GetListWithMessageByWriter(id);
+            return _message2Dal.GetListWithMessageByWriter(id);
         }
 
         public List<Message2> GetList()
         {
-            return _messagel2Dal.GetListAll();
+            return _message2Dal.GetListAll();
         }
 
         public void TAdd(Message2 t)
@@ -40,7 +40,7 @@ namespace BusinessLayer.Concrete
 
         public Message2 TGetById(int id)
         {
-            return _messagel2Dal.GetByID(id);
+            return _message2Dal.GetByID(id);
         }
 
         public void TUpdate(Message2 t)
