@@ -10,6 +10,7 @@
 <button type="button" id="btngetbyid" class="btn btn-outline-success">Yazarı Getir</button>
 <button type="button" id="btnaddwriter" class="btn btn-outline-info">Yazar Ekle</button>
 <button type="button" id="btndeletewriter" class="btn btn-outline-danger">Yazarı Sil</button>
+<button type="button" id="btnupdatewriter" class="btn btn-outline-warning">Yazarı Güncelle</button>
 <br />
 <div id="writerlist">
     writerlist
@@ -28,6 +29,10 @@
 </div>
 <div>
     <input type="text" class="form-control" id="txtid" placeholder="Silinecek Yazar ID" />
+</div>
+<div>
+    <input type="text" class="form-control" id="txtıdupdate" placeholder="Güncellenecek ID" />
+    <input type="text" class="form-control" id="txtnameupdate" placeholder="Güncellenecek İsim" />
 </div>
 
 @section scripts{
@@ -96,6 +101,21 @@
                 dataType: "json",
                 success: function (func) {
                     alert("Yazar başarılı şekilde silindi!");
+                }
+            });
+        });
+
+        $("#btnupdatewriter").click(function () {
+            let writer = {
+                ID: $("#txtıdupdate").val(),
+                Name: $("#txtnameupdate").val()
+            };
+            $.ajax({
+                type: "post",
+                url: "/Admin/Writer/UpdateWriter/",
+                data: writer,
+                success: function (funk) {
+                    alert("Güncelleme yapıldı.");
                 }
             });
         });

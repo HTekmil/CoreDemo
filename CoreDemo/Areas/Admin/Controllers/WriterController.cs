@@ -43,6 +43,14 @@ namespace CoreDemo.Areas.Admin.Controllers
             return Json(writer);
         }
 
+        public IActionResult UpdateWriter(WriterClass w)
+        {
+            var writer = writers.FirstOrDefault(x => x.ID == w.ID);
+            writer.Name = w.Name;
+            var jsonWriter = JsonConvert.SerializeObject(w);
+            return Json(jsonWriter);
+        }
+
         public static List<WriterClass> writers = new List<WriterClass>
         {
             new WriterClass
