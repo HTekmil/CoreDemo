@@ -13,7 +13,7 @@ namespace CoreDemo.Controllers
         public async Task<IActionResult> Index()
         {
             var httpClient = new HttpClient();
-            var responceMessage = await httpClient.GetAsync("https://localhost:44359/api/Default");
+            var responceMessage = await httpClient.GetAsync("https://localhost:5001/api/Default");
             var jsonString = await responceMessage.Content.ReadAsStringAsync();
             var values = JsonConvert.DeserializeObject<List<Class1>>(jsonString);
             return View(values);
@@ -24,10 +24,10 @@ namespace CoreDemo.Controllers
             return View();
         }
 
-        public async Task<IActionResult> AddEmployee(Class1 p)
+        /*public async Task<IActionResult> AddEmployee(Class1 p)
         {
             var httpClient = new HttpClient();
-        }
+        }*/
     }
     public class Class1
     {
