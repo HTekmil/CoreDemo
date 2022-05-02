@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace CoreDemo.Controllers
@@ -19,15 +20,64 @@ namespace CoreDemo.Controllers
             return View(values);
         }
 
+        [HttpGet]
         public IActionResult AddEmployee()
         {
             return View();
         }
 
-        /*public async Task<IActionResult> AddEmployee(Class1 p)
+        [HttpPost]
+        public async Task<IActionResult> AddEmployee(Class1 p)
         {
             var httpClient = new HttpClient();
-        }*/
+            var jsonEmploee = JsonConvert.SerializeObject(p);
+            StringContent content = new StringContent(jsonEmploee, Encoding.UTF8, "application/json");
+            var responceMessage = await httpClient.PostAsync("https://localhost:5001/api/Default", content);
+            if (responceMessage.IsSuccessStatusCode)
+            {
+                return RedirectToAction("Index");
+            }
+            return View(p);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> EditEmployee(int id)
+        {
+            var httpClient = new HttpClient();
+            var responceMessage = await httpClient.GetAsync("https://localhost:5001/api/Default/" + id);
+            if (responceMessage.IsSuccessStatusCode)
+            {
+                var jsonEmployee = await responceMessage.Content.ReadAsStringAsync();
+                var values = JsonConvert.DeserializeObject<Class1>(jsonEmployee);
+                return View(values);
+            }
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> EditEmployee(Class1 p)
+        {
+            var httpClient = new HttpClient();
+            var jsonEmploee = JsonConvert.SerializeObject(p);
+            var content = new StringContent(jsonEmploee, Encoding.UTF8, "application/json");
+            var responceMessage = await httpClient.PutAsync("https://localhost:5001/api/Default", content);
+            if (responceMessage.IsSuccessStatusCode)
+            {
+                return RedirectToAction("Index");
+            }
+            return View(p);
+        }
+
+        public async Task<IActionResult> DeleteEmployee(int id)
+        {
+            var httpClient = new HttpClient();
+            var responceMessage = await httpClient.DeleteAsync("https://localhost:5001/api/Default/" + id);
+            if (responceMessage.IsSuccessStatusCode)
+            {
+                return RedirectToAction("Index");
+            }
+            return View();
+        }
     }
     public class Class1
     {
